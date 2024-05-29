@@ -1,17 +1,24 @@
+#!/usr/bin/env python3
+"""A module for filtering logs.
+"""
+#import os
 import re
+#import logging
+#import mysql.connector
 from typing import List
 
-def filter_datum(fields: List[str], redaction: str, message: str, separator: str) -> str:
-    pattern = r'({})=[^{}]*'.format('|'.join(map(re.escape, fields)), re.escape(separator))
-    return re.sub(pattern, lambda m: f"{m.group(1)}={redaction}", message)
 
-# Example usage:
-fields = ["password", "date_of_birth"]
-messages = [
-    "name=egg;email=eggmin@eggsample.com;password=eggcellent;date_of_birth=12/12/1986;",
-    "name=bob;email=bob@dylan.com;password=bobbycool;date_of_birth=03/04/1993;"
-]
+patterns = {
+    'extract': lambda x, y: r'(?P<field>{})=[^{}]*'.format('|'.join(x), y),
+    'replace': lambda x: r'\g<field>={}'.format(x),
+}
+#PII_FIELDS = ("name", "email", "phone", "ssn", "password")
 
-for message in messages:
-    print(filter_datum(fields, 'xxx', message, ';'))
 
+def filter_datum(
+        fields: List[str], redaction: str, message: str, separator: str,
+        ) -> str:
+    """Filters a log line.
+    """
+    extract, replace = (patterns["extract"], patterns["replace"])
+    return re.sub(extract(fields, separator), replace(redaction), message)
