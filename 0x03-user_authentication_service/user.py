@@ -22,7 +22,6 @@ class User(Base):
         reset_token (str): The reset token for the user, nullable.
     """
     __tablename__ = 'users'
-
     id = Column(Integer, primary_key=True)
     email = Column(String, nullable=False)
     hashed_password = Column(String, nullable=False)
