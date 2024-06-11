@@ -1,18 +1,15 @@
 #!/usr/bin/env python3
-
+"""This module contains the SQLAlchemy model for the users table.
 """
-This module contains the SQLAlchemy model for the users table.
-"""
-
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
+
 
 Base = declarative_base()
 
 
 class User(Base):
-    """
-    User model for the users table.
+    """User model for the users table.
 
     Attributes:
         id (int): The primary key of the user.
