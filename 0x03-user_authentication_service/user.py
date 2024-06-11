@@ -1,25 +1,23 @@
-#!/usr/bin/env python3
-'''user's.py
+#!usr/bin/env python3
 '''
-
-from sqlalchemy import Column, Integer, String, create_engine
+This module contains the User class, which is the SQLAlchemy model for the
+users table in the database. The User class inherits from the SQLAlchemy
+Base class and defines
+'''
+from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
 
 
 class User(Base):
-    """User model for the users table.
-    Attributes:
-        id (int): The primary key.
-        email (str): The user's email address. This field is non-nullable.
-        hashed_password (str): The hashed password of the user.
-        session_id (str): The session ID of the user.
-        reset_token (str): The reset token for password recovery.
-    """
+    '''
+    This class represents the users table in the database.
+    '''
     __tablename__ = 'users'
+
     id = Column(Integer, primary_key=True)
-    email = Column(String(250), nullable=False)
-    hashed_password = Column(String(250), nullable=False)
-    session_id = Column(String(250), nullable=True)
-    reset_token = Column(String(250), nullable=True)
+    email = Column(String, nullable=False)
+    hashed_password = Column(String, nullable=False)
+    session_id = Column(String, nullable=True)
+    reset_token = Column(String, nullable=True)
