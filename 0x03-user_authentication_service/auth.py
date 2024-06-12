@@ -1,6 +1,6 @@
-#!usr/bin/env python3
-'''function that uses the bcrypt package to hash a password string.
-'''
+#!/usr/bin/env python3
+"""A module for authentication-related routines.
+"""
 import bcrypt
 
 
