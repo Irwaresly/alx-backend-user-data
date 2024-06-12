@@ -3,12 +3,11 @@
 """
 import bcrypt
 
+
 def _hash_password(password: str) -> bytes:
     """Generate a salted hash of the input password.
-    
     Args:
         password (str): The password to be hashed.
-    
     Returns:
         bytes: The hashed password.
     """
