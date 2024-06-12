@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"], strict_slashes=False)
 def index() -> str:
-    '''GET method'''
+    '''GET method.
+    '''
     return jsonify({"message": "Bienvenue"})
 
 
