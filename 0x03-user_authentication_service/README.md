@@ -1,5 +1,3 @@
-Sure, I won't include the actual code, but I can guide you on how to structure your Flask application for user authentication and provide insights into each step.
-
 ### Project Structure and Overview
 
 1. **User Model (`user.py`)**:
