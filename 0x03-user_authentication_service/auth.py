@@ -45,6 +45,6 @@ class Auth:
         except NoResultFound:
             hashed_password = Auth.hash_password(password)
             new_user = self._db.add_user(
-                    email=email, hashed_password=hashed_password
+                email=email, hashed_password=hashed_password
             )
             return new_user
