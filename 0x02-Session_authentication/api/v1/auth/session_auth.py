@@ -29,16 +29,7 @@ class SessionAuth(Auth):
         return self.user_id_by_session_id.get(session_id)
 
     def current_user(self, request=None) -> User:
-        if request is None:
-            return None
-        '''Step 1: Retrieve session cookie (_my_session_id)'''
-        session_cookie = self.session_cookie(request)
-        if not session_cookie:
-            return None
-        '''Step 2: Get User ID based on session ID'''
-        user_id = self.user_id_for_session_id(session_cookie)
-        if not user_id:
-            return None
-        '''Step 3: Retrieve User instance from database'''
-        user_instance = User.get(user_id)
-        return user_instance
+        """Retrieves the user associated with the request.
+        """
+        user_id = self.user_id_for_session_id(self.session_cookie(request))
+        return User.get(user_id)
