@@ -8,7 +8,7 @@ Routes:
     GET '/' - Returns a JSON payload: {"message": "Bienvenue"}
 """
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, abort, redirect
 from flask import request
 from auth import Auth
 
