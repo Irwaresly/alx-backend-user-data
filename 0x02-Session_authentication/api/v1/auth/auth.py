@@ -2,6 +2,7 @@
 """Authentication module for the API.
 """
 import re
+import os
 from typing import List, TypeVar
 from flask import request
 
