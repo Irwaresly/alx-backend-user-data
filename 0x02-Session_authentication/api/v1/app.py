@@ -59,13 +59,18 @@ def authenticate_user():
             '/api/v1/status/',
             '/api/v1/unauthorized/',
             '/api/v1/forbidden/',
+            '/api/v1/auth_session/login/',
         ]
+        '''Check if the current path requires authentication'''
         if auth.require_auth(request.path, excluded_paths):
             auth_header = auth.authorization_header(request)
+            session_cookie = auth.session_cookie(request)
             user = auth.current_user(request)
             request.current_user = user
-            if auth_header is None:
+            '''Neither auth header nor session cookie is present, abort 401'''
+            if auth_header is None and session_cookie is None:
                 abort(401)
+            '''If user is not authenticated, abort with 403'''
             if user is None:
                 abort(403)
 
